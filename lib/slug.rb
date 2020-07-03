@@ -1,20 +1,22 @@
 module Slug
-
-    def slug(name)
-        # spaces, commas, periods, apostraphes
-        subs = {
-            ',' => '',
-            "'" => '',
-            ' ' => '-',
-            '.' => ''
-        }
-        name.gsub(/\W/,subs)
-    end
-
-    def find_by_slug(slug)
-        self.all.select do |i|
-            self.slug(i.name)==slug
+    module ClassMethods
+        def find_by_slug(slug)
+            self.all.find do |obj|
+                obj.slug == slug
+            end
         end
     end
-    
+
+    module InstanceMethods
+        def slug()
+            subs = {
+                ',' => '',
+                "'" => '',
+                ' ' => '-',
+                '.' => ''
+            }
+            self.name.downcase.gsub(/\W/,subs)
+        end
+    end
+ 
 end
