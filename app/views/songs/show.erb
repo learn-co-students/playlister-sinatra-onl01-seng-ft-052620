@@ -1,0 +1,14 @@
+<% if session[:notice] %>
+  <%= session[:notice] %>
+<% end %>
+
+<h1><%=@song.name%></h1>
+<h3>Artist</h3>
+<p><a href='/artists/<%=@song.artist.slug%>'><%=@song.artist.name%></a></p>
+
+<h3>Genres</h3>
+<%=@song.genres.map {|genre| "<a href='/genres/#{genre.slug}'>"+genre.name+"</a>"}.join(', ')%>
+<br><br>
+<form method='GET' action='/songs/<%=@song.slug%>/edit'>
+<input type='submit' value='Edit Song'>
+</form>
