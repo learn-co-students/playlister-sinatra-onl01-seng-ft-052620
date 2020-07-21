@@ -25,6 +25,7 @@ module Slugifiable
 
     module InstanceMethods 
         def slug 
+            
             self.name.split(' ').map do |i| 
                 i.downcase
             end.join("-")
