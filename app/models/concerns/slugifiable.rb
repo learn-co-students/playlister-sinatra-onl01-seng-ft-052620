@@ -2,16 +2,26 @@ require 'pry'
 module Slugifiable
 
     module ClassMethods 
+=begin
         def find_by_slug(slug)
             self.all.map do |i| 
                 if i.slug == slug 
-                    i
-                    #binding.pry
+                    i 
                 end 
-            end.first
-    
-        end 
-    end 
+            end.compact.first
+        end
+=end 
+
+
+
+        def find_by_slug(slug)
+            self.all.find do |i| 
+                if i.slug == slug 
+                    i 
+                end 
+            end
+        end
+ end 
 
     module InstanceMethods 
         def slug 
