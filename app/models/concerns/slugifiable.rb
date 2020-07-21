@@ -1,3 +1,4 @@
+require 'pry'
 module Slugifiable
 
     module ClassMethods 
@@ -5,6 +6,7 @@ module Slugifiable
             self.all.map do |i| 
                 if i.slug == slug 
                     i
+                    #binding.pry
                 end 
             end.first
     
